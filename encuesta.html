@@ -194,7 +194,6 @@
             gap: 40px;
         }
 
-        /* Nueva estructura para Acomodo Responsivo */
         .question-item {
             display: flex;
             align-items: center;
@@ -203,7 +202,6 @@
             width: 100%;
         }
 
-        /* Para preguntas que van en bloque (Sí/No, Comentarios) */
         .question-item.stacked {
             flex-direction: column;
             align-items: flex-start;
@@ -311,7 +309,24 @@
             animation: pulseRed 0.6s ease-out;
         }
 
-        /* === COMENTARIOS === */
+        /* === CAMPOS DE TEXTO (Nombre y Comentarios) === */
+        .text-input-box { width: 100%; }
+        .text-input-box input {
+            width: 100%;
+            height: 45px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--light-gray);
+            padding: 10px 15px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border 0.3s;
+        }
+        .text-input-box input:focus {
+            outline: none;
+            border: 2px solid var(--dark-blue);
+        }
+
         .comment-box { width: 100%; }
         .comment-box textarea {
             width: 100%;
@@ -319,9 +334,10 @@
             border-radius: 10px;
             border: 1px solid var(--border-color);
             background-color: var(--light-gray);
-            padding: 10px;
+            padding: 10px 15px;
             resize: none;
             font-family: inherit;
+            font-size: 0.95rem;
             transition: border 0.3s;
         }
         .comment-box textarea:focus {
@@ -435,23 +451,25 @@
         <!-- PREGUNTAS -->
         <section class="questions-grid">
             
-            <!-- COLUMNA IZQUIERDA -->
+            <!-- COLUMNA IZQUIERDA (Preguntas 1 a 5) -->
             <div class="col-left">
-                <!-- P1 -->
-                <div class="question-item">
+                <!-- P1 (NUEVA: Nombre del Técnico) -->
+                <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">1</div>
-                        <div class="q-text">Puntualidad del técnico:</div>
+                        <div class="q-text">Nombre del técnico que le atendió:</div>
                     </div>
                     <div class="q-answer">
-                        <div class="star-rating" data-question="q1"></div>
+                        <div class="text-input-box">
+                            <input type="text" id="nombre-tecnico" placeholder="Escriba el nombre del técnico...">
+                        </div>
                     </div>
                 </div>
                 <!-- P2 -->
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">2</div>
-                        <div class="q-text">Presentación y profesionalismo del técnico:</div>
+                        <div class="q-text">Puntualidad del técnico:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q2"></div>
@@ -461,7 +479,7 @@
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">3</div>
-                        <div class="q-text">Calidad del servicio realizado:</div>
+                        <div class="q-text">Presentación y profesionalismo del técnico:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q3"></div>
@@ -471,7 +489,7 @@
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">4</div>
-                        <div class="q-text">Explicación del trabajo efectuado:</div>
+                        <div class="q-text">Calidad del servicio realizado:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q4"></div>
@@ -481,7 +499,7 @@
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">5</div>
-                        <div class="q-text">Atención y amabilidad del personal:</div>
+                        <div class="q-text">Explicación del trabajo efectuado:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q5"></div>
@@ -489,23 +507,34 @@
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA -->
+            <!-- COLUMNA DERECHA (Preguntas 6 a 8) -->
             <div class="col-right">
-                <!-- P6 -->
-                <div class="question-item stacked">
+                <!-- P6 (Movida a la derecha para balancear) -->
+                <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">6</div>
+                        <div class="q-text">Atención y amabilidad del personal:</div>
+                    </div>
+                    <div class="q-answer">
+                        <div class="star-rating" data-question="q6"></div>
+                    </div>
+                </div>
+
+                <!-- P7 (Recomendación) -->
+                <div class="question-item stacked">
+                    <div class="q-header">
+                        <div class="q-num">7</div>
                         <div class="q-text">¿Recomendaría a IEBSA?</div>
                     </div>
                     <div class="q-answer">
                         <div class="recommendation-opts">
                             <label class="rec-label">
-                                <input type="radio" name="q6" value="Sí">
+                                <input type="radio" name="q7" value="Sí">
                                 <span class="icon-check-btn">✔</span>
                                 <span class="rec-text">Sí</span>
                             </label>
                             <label class="rec-label">
-                                <input type="radio" name="q6" value="No">
+                                <input type="radio" name="q7" value="No">
                                 <span class="icon-cross-btn">✖</span>
                                 <span class="rec-text">No</span>
                             </label>
@@ -513,15 +542,15 @@
                     </div>
                 </div>
 
-                <!-- P7 -->
+                <!-- P8 (Nombre y Comentarios) -->
                 <div class="question-item stacked">
                     <div class="q-header">
-                        <div class="q-num">7</div>
-                        <div class="q-text">¿Tiene algún comentario o sugerencia?</div>
+                        <div class="q-num">8</div>
+                        <div class="q-text">¿Nos podría proporcionar su nombre y algún comentario o sugerencia?</div>
                     </div>
                     <div class="q-answer">
                         <div class="comment-box">
-                            <textarea id="q7-comment" maxlength="200" placeholder="Escriba aquí (Máximo 200 caracteres)..."></textarea>
+                            <textarea id="q8-comment" maxlength="200" placeholder="Su nombre y comentarios (Máximo 200 caracteres)..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -634,7 +663,8 @@
         });
 
         // === ANIMACIÓN BOTONES RECOMENDACIÓN (SÍ / NO) ===
-        const recRadios = document.querySelectorAll('input[name="q6"]');
+        // Ajustado para la pregunta 7
+        const recRadios = document.querySelectorAll('input[name="q7"]');
         recRadios.forEach(radio => {
             radio.addEventListener('change', (e) => {
                 const parentContainer = e.target.closest('.recommendation-opts');
@@ -656,23 +686,25 @@
             const val = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value || 'Sin respuesta';
             
             const qGlobal = val('global_rating');
-            const q1 = val('q1');
+            const tecnico = document.getElementById('nombre-tecnico').value.trim() || 'No especificado';
             const q2 = val('q2');
             const q3 = val('q3');
             const q4 = val('q4');
             const q5 = val('q5');
             const q6 = val('q6');
-            const comentarios = document.getElementById('q7-comment').value.trim() || 'Sin comentarios adicionales.';
+            const q7 = val('q7');
+            const comentarios = document.getElementById('q8-comment').value.trim() || 'Sin comentarios adicionales.';
 
             return `*RESULTADOS ENCUESTA DE SATISFACCIÓN IEBSA*\n\n` +
                    `Cuadro Calificación Global: ${qGlobal}\n` +
-                   `1. Puntualidad del técnico: ${q1} estrellas\n` +
-                   `2. Presentación y profesionalismo: ${q2} estrellas\n` +
-                   `3. Calidad del servicio realizado: ${q3} estrellas\n` +
-                   `4. Explicación del trabajo efectuado: ${q4} estrellas\n` +
-                   `5. Atención y amabilidad: ${q5} estrellas\n` +
-                   `6. ¿Recomendaría a IEBSA?: ${q6}\n` +
-                   `7. Comentarios: ${comentarios}`;
+                   `1. Nombre del técnico: ${tecnico}\n` +
+                   `2. Puntualidad del técnico: ${q2} estrellas\n` +
+                   `3. Presentación y profesionalismo: ${q3} estrellas\n` +
+                   `4. Calidad del servicio realizado: ${q4} estrellas\n` +
+                   `5. Explicación del trabajo efectuado: ${q5} estrellas\n` +
+                   `6. Atención y amabilidad: ${q6} estrellas\n` +
+                   `7. ¿Recomendaría a IEBSA?: ${q7}\n` +
+                   `8. Cliente y Comentarios: ${comentarios}`;
         }
 
         function enviarWhatsApp() {
@@ -683,7 +715,7 @@
 
         function enviarCorreo() {
             const mensaje = encodeURIComponent(recopilarDatos());
-            const url = `mailto:gerencia_iebsa@outlook.com?subject=Resultados de Encuesta de Renta IEBSA&body=${mensaje}`;
+            const url = `mailto:gerencia_iebsa@outlook.com?subject=Resultados de Encuesta IEBSA&body=${mensaje}`;
             window.location.href = url;
         }
     </script>

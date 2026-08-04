@@ -453,7 +453,7 @@
             
             <!-- COLUMNA IZQUIERDA (Preguntas 1 a 5) -->
             <div class="col-left">
-                <!-- P1 (NUEVA: Nombre del Técnico) -->
+                <!-- P1 -->
                 <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">1</div>
@@ -509,7 +509,7 @@
 
             <!-- COLUMNA DERECHA (Preguntas 6 a 8) -->
             <div class="col-right">
-                <!-- P6 (Movida a la derecha para balancear) -->
+                <!-- P6 -->
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">6</div>
@@ -520,7 +520,7 @@
                     </div>
                 </div>
 
-                <!-- P7 (Recomendación) -->
+                <!-- P7 -->
                 <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">7</div>
@@ -542,15 +542,20 @@
                     </div>
                 </div>
 
-                <!-- P8 (Nombre y Comentarios) -->
+                <!-- P8 (Nombre y Comentarios Dividido) -->
                 <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">8</div>
-                        <div class="q-text">¿Nos podría proporcionar su nombre y algún comentario o sugerencia?</div>
+                        <div class="q-text">Déjenos su nombre y algún comentario o sugerencia:</div>
                     </div>
                     <div class="q-answer">
+                        <!-- Campo para el Nombre -->
+                        <div class="text-input-box" style="margin-bottom: 15px;">
+                            <input type="text" id="nombre-cliente" placeholder="Su nombre o razón social...">
+                        </div>
+                        <!-- Campo para el Comentario -->
                         <div class="comment-box">
-                            <textarea id="q8-comment" maxlength="200" placeholder="Su nombre y comentarios (Máximo 200 caracteres)..."></textarea>
+                            <textarea id="q8-comment" maxlength="200" placeholder="Sus comentarios o sugerencias (Máximo 200 caracteres)..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -663,7 +668,6 @@
         });
 
         // === ANIMACIÓN BOTONES RECOMENDACIÓN (SÍ / NO) ===
-        // Ajustado para la pregunta 7
         const recRadios = document.querySelectorAll('input[name="q7"]');
         recRadios.forEach(radio => {
             radio.addEventListener('change', (e) => {
@@ -693,6 +697,9 @@
             const q5 = val('q5');
             const q6 = val('q6');
             const q7 = val('q7');
+            
+            // Aquí capturamos los nuevos campos por separado
+            const cliente = document.getElementById('nombre-cliente').value.trim() || 'No especificado';
             const comentarios = document.getElementById('q8-comment').value.trim() || 'Sin comentarios adicionales.';
 
             return `*RESULTADOS ENCUESTA DE SATISFACCIÓN IEBSA*\n\n` +
@@ -704,7 +711,8 @@
                    `5. Explicación del trabajo efectuado: ${q5} estrellas\n` +
                    `6. Atención y amabilidad: ${q6} estrellas\n` +
                    `7. ¿Recomendaría a IEBSA?: ${q7}\n` +
-                   `8. Cliente y Comentarios: ${comentarios}`;
+                   `8. Nombre del Cliente: ${cliente}\n` +
+                   `-> Comentarios: ${comentarios}`;
         }
 
         function enviarWhatsApp() {

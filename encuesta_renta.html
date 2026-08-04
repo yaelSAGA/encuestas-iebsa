@@ -454,7 +454,7 @@
             
             <!-- COLUMNA IZQUIERDA (Preguntas 1 a 5) -->
             <div class="col-left">
-                <!-- P1 (NUEVA: Nombre del Técnico) -->
+                <!-- P1 -->
                 <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">1</div>
@@ -576,15 +576,20 @@
                     </div>
                 </div>
 
-                <!-- P10 (Nombre y Comentarios) -->
+                <!-- P10 (Nombre y Comentarios Dividido) -->
                 <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">10</div>
-                        <div class="q-text">¿Nos podría proporcionar su nombre y algún comentario o sugerencia?</div>
+                        <div class="q-text">Déjenos su nombre y algún comentario o sugerencia:</div>
                     </div>
                     <div class="q-answer">
+                        <!-- Campo para el Nombre -->
+                        <div class="text-input-box" style="margin-bottom: 15px;">
+                            <input type="text" id="nombre-cliente" placeholder="Su nombre o razón social...">
+                        </div>
+                        <!-- Campo para el Comentario -->
                         <div class="comment-box">
-                            <textarea id="q10-comment" maxlength="200" placeholder="Su nombre y comentarios (Máximo 200 caracteres)..."></textarea>
+                            <textarea id="q10-comment" maxlength="200" placeholder="Sus comentarios o sugerencias (Máximo 200 caracteres)..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -710,6 +715,9 @@
             const q7 = val('q7'); 
             const q8 = val('q8'); 
             const q9 = val('q9'); 
+            
+            // Nuevos campos separados
+            const cliente = document.getElementById('nombre-cliente').value.trim() || 'No especificado';
             const comentarios = document.getElementById('q10-comment').value.trim() || 'Sin comentarios adicionales.';
 
             return `*RESULTADOS ENCUESTA DE SATISFACCIÓN - RENTA IEBSA*\n\n` +
@@ -723,7 +731,8 @@
                    `7. Satisfacción general: ${q7} estrellas\n` +
                    `8. ¿Volvería a contratar?: ${q8}\n` +
                    `9. ¿Recomendaría nuestro servicio?: ${q9}\n` +
-                   `10. Cliente y Comentarios: ${comentarios}`;
+                   `10. Nombre del Cliente: ${cliente}\n` +
+                   `-> Comentarios: ${comentarios}`;
         }
 
         function enviarWhatsApp() {

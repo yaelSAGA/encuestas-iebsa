@@ -195,7 +195,6 @@
             gap: 40px;
         }
 
-        /* Estructura Base de las Preguntas */
         .question-item {
             display: flex;
             align-items: center;
@@ -204,7 +203,6 @@
             width: 100%;
         }
 
-        /* Para las preguntas que por diseño siempre van en bloque (Sí/No, Comentarios) */
         .question-item.stacked {
             flex-direction: column;
             align-items: flex-start;
@@ -237,6 +235,42 @@
             padding-left: 45px;
             margin-top: 10px;
             width: 100%;
+        }
+
+        /* === CAMPOS DE TEXTO (Nombre y Comentarios) === */
+        .text-input-box { width: 100%; }
+        .text-input-box input {
+            width: 100%;
+            height: 45px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--light-gray);
+            padding: 10px 15px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border 0.3s;
+        }
+        .text-input-box input:focus {
+            outline: none;
+            border: 2px solid var(--orange);
+        }
+
+        .comment-box { width: 100%; }
+        .comment-box textarea {
+            width: 100%;
+            height: 80px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--light-gray);
+            padding: 10px 15px;
+            resize: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border 0.3s;
+        }
+        .comment-box textarea:focus {
+            outline: none;
+            border: 2px solid var(--orange);
         }
 
         /* === SISTEMA DE ESTRELLAS === */
@@ -312,24 +346,6 @@
             animation: pulseRed 0.6s ease-out;
         }
 
-        /* === COMENTARIOS === */
-        .comment-box { width: 100%; }
-        .comment-box textarea {
-            width: 100%;
-            height: 80px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background-color: var(--light-gray);
-            padding: 10px;
-            resize: none;
-            font-family: inherit;
-            transition: border 0.3s;
-        }
-        .comment-box textarea:focus {
-            outline: none;
-            border: 2px solid var(--orange);
-        }
-
         /* === PIE DE PÁGINA === */
         .footer {
             background-color: var(--orange);
@@ -370,7 +386,6 @@
             .planta-icon { max-width: 140px; margin-left: 0; }
             .questions-grid { grid-template-columns: 1fr; gap: 20px; }
             
-            /* Acomodo de las estrellas y respuestas debajo de la pregunta en móviles */
             .question-item { flex-direction: column; align-items: flex-start; }
             .q-header { padding-right: 0; width: 100%; }
             .q-answer { padding-left: 45px; margin-top: 10px; width: 100%; }
@@ -437,23 +452,25 @@
         <!-- PREGUNTAS -->
         <section class="questions-grid">
             
-            <!-- COLUMNA IZQUIERDA (PREGUNTAS 1 A 6) -->
+            <!-- COLUMNA IZQUIERDA (Preguntas 1 a 5) -->
             <div class="col-left">
-                <!-- P1 -->
-                <div class="question-item">
+                <!-- P1 (NUEVA: Nombre del Técnico) -->
+                <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">1</div>
-                        <div class="q-text">Puntualidad en la entrega del equipo:</div>
+                        <div class="q-text">Nombre del técnico que le atendió:</div>
                     </div>
                     <div class="q-answer">
-                        <div class="star-rating" data-question="q1"></div>
+                        <div class="text-input-box">
+                            <input type="text" id="nombre-tecnico" placeholder="Escriba el nombre del técnico...">
+                        </div>
                     </div>
                 </div>
                 <!-- P2 -->
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">2</div>
-                        <div class="q-text">Estado y funcionamiento de la planta:</div>
+                        <div class="q-text">Puntualidad en la entrega del equipo:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q2"></div>
@@ -463,7 +480,7 @@
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">3</div>
-                        <div class="q-text">Atención y profesionalismo del personal:</div>
+                        <div class="q-text">Estado y funcionamiento de la planta:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q3"></div>
@@ -473,7 +490,7 @@
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">4</div>
-                        <div class="q-text">Instalación y puesta en marcha del equipo:</div>
+                        <div class="q-text">Atención y profesionalismo del personal:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q4"></div>
@@ -483,54 +500,43 @@
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">5</div>
-                        <div class="q-text">Tiempo de respuesta cuando necesitó apoyo (si aplicó):</div>
+                        <div class="q-text">Instalación y puesta en marcha del equipo:</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q5"></div>
                     </div>
                 </div>
-                <!-- P6 (Se movió a la izquierda para balancear el diseño) -->
+            </div>
+
+            <!-- COLUMNA DERECHA (Preguntas 6 a 10) -->
+            <div class="col-right">
+                <!-- P6 -->
                 <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">6</div>
-                        <div class="q-text">En general, ¿qué tan satisfecho quedó con el servicio de renta?</div>
+                        <div class="q-text">Tiempo de respuesta cuando necesitó apoyo (si aplicó):</div>
                     </div>
                     <div class="q-answer">
                         <div class="star-rating" data-question="q6"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- COLUMNA DERECHA (PREGUNTAS 7 A 9) -->
-            <div class="col-right">
-                
-                <!-- P7 (Sí / No) -->
-                <div class="question-item stacked">
+                <!-- P7 -->
+                <div class="question-item">
                     <div class="q-header">
                         <div class="q-num">7</div>
-                        <div class="q-text">¿Volvería a contratar los servicios de IEBSA?</div>
+                        <div class="q-text">En general, ¿qué tan satisfecho quedó con el servicio de renta?</div>
                     </div>
                     <div class="q-answer">
-                        <div class="recommendation-opts">
-                            <label class="rec-label">
-                                <input type="radio" name="q7" value="Sí">
-                                <span class="icon-check-btn">✔</span>
-                                <span class="rec-text">Sí</span>
-                            </label>
-                            <label class="rec-label">
-                                <input type="radio" name="q7" value="No">
-                                <span class="icon-cross-btn">✖</span>
-                                <span class="rec-text">No</span>
-                            </label>
-                        </div>
+                        <div class="star-rating" data-question="q7"></div>
                     </div>
                 </div>
-
+                
                 <!-- P8 (Sí / No) -->
                 <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">8</div>
-                        <div class="q-text">¿Recomendaría nuestro servicio?</div>
+                        <div class="q-text">¿Volvería a contratar los servicios de IEBSA?</div>
                     </div>
                     <div class="q-answer">
                         <div class="recommendation-opts">
@@ -548,15 +554,37 @@
                     </div>
                 </div>
 
-                <!-- P9 (Comentarios) -->
+                <!-- P9 (Sí / No) -->
                 <div class="question-item stacked">
                     <div class="q-header">
                         <div class="q-num">9</div>
-                        <div class="q-text">¿Tiene algún comentario o sugerencia?</div>
+                        <div class="q-text">¿Recomendaría nuestro servicio?</div>
+                    </div>
+                    <div class="q-answer">
+                        <div class="recommendation-opts">
+                            <label class="rec-label">
+                                <input type="radio" name="q9" value="Sí">
+                                <span class="icon-check-btn">✔</span>
+                                <span class="rec-text">Sí</span>
+                            </label>
+                            <label class="rec-label">
+                                <input type="radio" name="q9" value="No">
+                                <span class="icon-cross-btn">✖</span>
+                                <span class="rec-text">No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- P10 (Nombre y Comentarios) -->
+                <div class="question-item stacked">
+                    <div class="q-header">
+                        <div class="q-num">10</div>
+                        <div class="q-text">¿Nos podría proporcionar su nombre y algún comentario o sugerencia?</div>
                     </div>
                     <div class="q-answer">
                         <div class="comment-box">
-                            <textarea id="q9-comment" maxlength="200" placeholder="Escriba aquí (Máximo 200 caracteres)..."></textarea>
+                            <textarea id="q10-comment" maxlength="200" placeholder="Su nombre y comentarios (Máximo 200 caracteres)..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -656,7 +684,7 @@
             });
         });
 
-        const recRadios = document.querySelectorAll('input[name="q7"], input[name="q8"]');
+        const recRadios = document.querySelectorAll('input[name="q8"], input[name="q9"]');
         recRadios.forEach(radio => {
             radio.addEventListener('change', (e) => {
                 const parentContainer = e.target.closest('.recommendation-opts');
@@ -671,8 +699,9 @@
 
         function recopilarDatos() {
             const val = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value || 'Sin respuesta';
+            
             const qGlobal = val('global_rating');
-            const q1 = val('q1');
+            const tecnico = document.getElementById('nombre-tecnico').value.trim() || 'No especificado';
             const q2 = val('q2');
             const q3 = val('q3');
             const q4 = val('q4');
@@ -680,19 +709,21 @@
             const q6 = val('q6'); 
             const q7 = val('q7'); 
             const q8 = val('q8'); 
-            const comentarios = document.getElementById('q9-comment').value.trim() || 'Sin comentarios adicionales.';
+            const q9 = val('q9'); 
+            const comentarios = document.getElementById('q10-comment').value.trim() || 'Sin comentarios adicionales.';
 
             return `*RESULTADOS ENCUESTA DE SATISFACCIÓN - RENTA IEBSA*\n\n` +
                    `Cuadro Calificación Global: ${qGlobal}\n` +
-                   `1. Puntualidad en la entrega: ${q1} estrellas\n` +
-                   `2. Estado y funcionamiento: ${q2} estrellas\n` +
-                   `3. Atención y profesionalismo: ${q3} estrellas\n` +
-                   `4. Instalación y puesta en marcha: ${q4} estrellas\n` +
-                   `5. Tiempo de respuesta: ${q5} estrellas\n` +
-                   `6. Satisfacción general: ${q6} estrellas\n` +
-                   `7. ¿Volvería a contratar?: ${q7}\n` +
-                   `8. ¿Recomendaría nuestro servicio?: ${q8}\n` +
-                   `9. Comentarios: ${comentarios}`;
+                   `1. Nombre del técnico: ${tecnico}\n` +
+                   `2. Puntualidad en la entrega: ${q2} estrellas\n` +
+                   `3. Estado y funcionamiento: ${q3} estrellas\n` +
+                   `4. Atención y profesionalismo: ${q4} estrellas\n` +
+                   `5. Instalación y puesta en marcha: ${q5} estrellas\n` +
+                   `6. Tiempo de respuesta: ${q6} estrellas\n` +
+                   `7. Satisfacción general: ${q7} estrellas\n` +
+                   `8. ¿Volvería a contratar?: ${q8}\n` +
+                   `9. ¿Recomendaría nuestro servicio?: ${q9}\n` +
+                   `10. Cliente y Comentarios: ${comentarios}`;
         }
 
         function enviarWhatsApp() {
